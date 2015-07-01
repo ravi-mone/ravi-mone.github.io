@@ -20,7 +20,7 @@ angAuth.controller('loginController', function ($scope, $location, $facebook, $r
     }
     var message = '';
     $scope.loginUser = function(credientials){
-	if(credientials)
+	if(credientials){
         raceProviders.getLoginDetails().then(function (response) {
             if(response.status == 200){
                 var userCredentials = response.data;
@@ -38,5 +38,6 @@ angAuth.controller('loginController', function ($scope, $location, $facebook, $r
                 }
             }
         });
+}
     };
 });
