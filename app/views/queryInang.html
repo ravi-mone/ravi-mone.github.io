@@ -1,0 +1,32 @@
+<div ng-class="header">
+    <auth-menu></auth-menu>
+    <h3>jQuery DatePicker in Angularjs</h3>
+
+    <h2>{{date}}</h2>
+    <input type="text" ng-model="date" datepicker  />
+</div>
+<hr />
+<h3>jQuery Chosen in Angularjs</h3>
+
+<!--
+One thing to note is that ngModel is required for ngOptions to work
+note the ng-model="blah" which is saying "set $scope.blah to the selected value".
+-->
+<select data-placeholder="Select one..." class="chzn-select" style="width:350px;" tabindex="2"
+        ng-model="blah" ng-options="recipient.id as recipient.text for recipient in recipients" multiple chosen>
+</select>
+<div>
+    <ul>
+        <li ng-repeat="value in blah">{{value}}</li>
+    </ul>
+</div>
+        <!--div><input type="button" value="Show the selected Valued" ng-click="showSelected()" /></div>
+        <div>
+            <ul>
+                <li ng-repeat="name in Names">{{name}}</li>
+            </ul>
+        </div-->
+<p>&nbsp;</p>
+
+
+

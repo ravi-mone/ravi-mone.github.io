@@ -1,0 +1,166 @@
+<div ng-class="header">
+    <auth-menu></auth-menu>
+    <ul class="list-group">
+        <li class="list-group-item"><b>Formula 1, 2013 Drivers Position</b></li>
+        <li class="list-group-item">
+                <div class="input-group">
+                    <input type="text" ng-model="nameFilter" class="form-control" placeholder="Search...">
+                    <span class="input-group-addon glyphicon glyphicon-search" ng-click="filterByNames()" style="top:0px;cursor: pointer;" ></span>
+                    <span style="margin-left: 20px;cursor: pointer;" title="Reset" class="glyphicon glyphicon-refresh" ng-click="nameFilter = '';filterByNames();" ></span>
+                </div>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <b>Total Found :
+                    <!--<span ng-if="(data.length >= 1 && data.length < driversList.length)" class="badge badge-success">{{data.length}}</span>-->
+                    <span  ng-class="{'badge badge-error' : (data.length == 0), 'badge badge-success' : (data.length >= 1)}" >{{data.length}}</span>.
+                    <div ng-switch="data.length">
+                        <span  class="glyphicon glyphicon-user"></span>
+                        <span ng-switch-when="0">No drivers. :-(</span>
+                        <span ng-switch-when="1">1 driver!</span>
+                        <span ng-switch-when="2">{{data[0].Driver.givenName}} and {{data[1].Driver.givenName}} driver !</span>
+                        <span ng-switch-default>{{data[0].Driver.givenName}}, {{data[1].Driver.givenName}} and
+                            <span class="badge badge-info">{{data.length - 2}}</span> other !</span>
+                    </div>
+                </b>
+            </div>
+            <div  class="col-md-8">
+                <div class="col-md-6"></div>
+                <div  class="col-md-6">
+                    <div  class="col-md-7" style="text-align:right;margin-top:6px;">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">Showing {{(data.length >= 1 && data.length < driversList.length)? data.length :  pageSelected }} records</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-show="data.length >= 10"><a ng-model="pageSelected" ng-click="showSelected(10);">10</a></li>
+                                <li ng-show="data.length >= 20"><a  ng-model="pageSelected" ng-click="showSelected(20);">20</a></li>
+                                <li  ng-show="data.length >= 21"><a  ng-model="pageSelected" ng-click="showSelected('');">All</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <!--Slider -->
+    <h6>Filter the records based on {{sliderFilter.selectedFilter}}</h6>
+    <slider floor="{{sliderFilter[sliderFilter.selectedFilter].floor}}" ceiling="{{sliderFilter[sliderFilter.selectedFilter].ceil}}"  ng-model-low="sliderFilter[sliderFilter.selectedFilter].from" ng-model-high="sliderFilter[sliderFilter.selectedFilter].to" style="width: 80%" ></slider>
+
+    <b style="margin-left: 10px;">Filtering {{sliderFilter.selectedFilter}}: {{sliderFilter[sliderFilter.selectedFilter].from}} - {{sliderFilter[sliderFilter.selectedFilter].to}}</b>
+
+    <!--Slider -->
+    <!--Header Names -->
+    <div class="row">
+        <div class="col-md-12" style="border: 1px;">
+            <div class="col-md-1" style="text-align: right;" >
+                <b>Photo</b>
+            </div>
+            <div class="col-md-3">
+                <div class="col-md-12">
+                    <div class="col-md-4" style="text-align: right;padding-right: 0px;" >
+                        <b>Name  </b>
+                    </div>
+                    <div class="col-md-5" style="text-align: right;padding-right: 0px;"><b>Sur Name</b></div>
+                    <div class="col-md-3">
+                        <b>Nationality</b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <b>Brand </b>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <b></b>
+                        <span class="glyphicon glyphicon-filter" id="points" ng-click="makeActive('points')" style="cursor:pointer;" title="Filtering Points"></span>
+                        <a ng-click="sortBy('points')"> <b>Points  </b>{{sortIconFor('points')}}</a>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="glyphicon glyphicon-filter filteractive"  id="position" title="Filtering Points" style="cursor:pointer;" ng-click="makeActive('position')"></span>
+                        <a ng-click="sortBy('position')"> <b>Position  </b>{{sortIconFor('position')}}</a>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="glyphicon glyphicon-filter" id="wins"  title="Filtering Points" style="cursor:pointer;" ng-click="makeActive('wins')"></span>
+                        <a ng-click="sortBy('wins')"> <b>Matches  </b>{{sortIconFor('wins')}}</a>
+                    </div>
+                    <div class="col-md-3">
+                        <b>Wiki</b>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Contents Here-->
+    <div class="row">
+        <ul class="list-group"  class="table" ng-repeat="driver in data | limitTo: pageSelected ">
+
+            <li class="list-group-item" ng-animate="'animate'">
+                <div class="col-md-12" style="border: 1px;">
+                    <div class="col-md-1">
+                        <img ng-src="images/{{driver.Driver.driverId}}.jpg" class="img-thumbnail" width="100" height="50" border="0"  />
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12">
+                            <div class="col-md-4"> <a ng-href="#/listUser/{{driver.Driver.driverId}}">{{driver.Driver.givenName}}</a></div>
+                            <div class="col-md-5">{{driver.Driver.familyName}}</div>
+                            <div class="col-md-3">
+                                <div class="{{driver.Driver.nationality}} flagicon" title="{{driver.Driver.nationality}}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        {{driver.Constructors[0].name}}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-default btn-lg" disabled>
+                                    <span class="glyphicon glyphicon-star"></span> {{driver.points}}
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-default btn-lg" disabled>
+                                    <span class="glyphicon glyphicon-user"></span> {{driver.position}}
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-default btn-lg " disabled>
+
+                                    <span ng-if="driver.wins == 0" class="glyphicon glyphicon-thumbs-down "></span>
+                                    <span ng-if="driver.wins != 0" class="glyphicon glyphicon-thumbs-up"></span>
+                                    {{driver.wins}}
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <a ng-href="{{driver.Driver.url}}" target="_blank"><button type="button" class="btn btn-default btn-lg" >
+                                    <span class="glyphicon glyphicon-globe">
+                                        Wiki
+                                    </span>
+                                </button></a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                &nbsp;
+
+
+            </li>
+        </ul>
+    </div>
+    <!--Header Names-->
+</div>

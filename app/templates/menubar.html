@@ -1,0 +1,49 @@
+<div class="navbar"  ng-controller="menuController">
+    <div class="navbar-inner">
+        <div class="col-md-10">
+        <a class="brand" href="#/"></a>
+        <ul class="nav">
+            <li ng-class="{active: routeIs('/home')}"><a ng-href="#/home">Home</a></li>
+            <!--li ng-class="{active: routeIs('/account')}"><a ng-href="#/account">Account</a></li-->
+            <!--li ng-class="{active: routeIs('/treeSearch')}"><a ng-href="#/treeSearch"></a></li-->
+            <!--li ng-class="{active: routeIs('/listUser')}"><a ng-href="#/linkedInUser">List Users</a></li-->
+            <li ng-class="{active: routeIs('/demo')}"><a ng-href="#/demo">My Experiment</a></li>
+            <li ng-class="{active: routeIs('/queryInAng')}"><a ng-href="#/queryInAng">jQuery with Angular</a></li>
+            <li ng-class="{active: routeIs('/explain')}"><a ng-href="#/explain">ngFaceBook explained</a></li>
+            <li ng-class="{active: routeIs('/myLab')}"><a ng-href="#/myLab">About Me</a></li>
+
+            <li style="margin-left: 120px;top: 8px;">
+                <span style="margin-left: 20px;">
+                    <a class="btn-auth"  ng-click="FBlogout();">
+                        <span ng-hide="connectedToFB">
+                          Sign out
+                        </span>
+                    </a>
+
+            </li>
+            </ul>
+            </div>
+        <div class="col-md-2">
+                    <ul class="nav">
+                    <li style="top: 0px;padding: 0px;">
+
+                            <div class="btn-group" style="margin-top: 0px;">
+                                <button type="button" class="btn btn-primary" style="padding: 0px;" >
+                                    <img ng-src="http://graph.facebook.com/{{userDetails.id}}/picture?type=square" class="img-responsive img-circle" width="40" height="40" />
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="height: 42px;">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a><span class="glyphicon glyphicon-user"></span>&nbsp;{{userDetails.username}}</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ><span class="glyphicon glyphicon-envelope"></span>&nbsp;{{userDetails.email}}</a></li>
+                                </ul>
+                            </div>
+
+                    </li>
+                </ul>
+                </div>
+    </div>
+</div>

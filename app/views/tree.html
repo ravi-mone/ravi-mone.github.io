@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="styles/style.css">
+<style>
+.backcolored{
+    color: green;
+    font-weight: bold;
+}
+.back{
+    color: black;
+    font-weight: normal;
+
+}
+</style>
+<div ng-class="header">
+    <auth-menu></auth-menu>
+    <div class="col-lg-12">
+        <div class="col-lg-1">
+            &nbsp;
+        </div>
+        <div class="col-lg-3" style="padding-top:20px;" id='btnDiv'>
+
+            <!-- button with directive ng-click and this function can be found in controller -->
+            <button ng-click="buildTree()" id="btn-action">Build Tree</button>
+
+        </div>
+        <div class="col-lg-4" style="padding-top:25px;color:{{ color }};">
+
+            <!-- div with directive ng-if which checks if pathPrint is blank it will not display this div and message -->
+            <div ng-if="pathPrint" >{{ pathPrint }} </div>
+        </div>
+    </div>
+
+    <!-- display some space and then div where tree is to be displyed -->
+    <div class="col-lg-12">
+        <div class="col-lg-2">
+            &nbsp;
+        </div>
+        <div class="col-lg-8" style="min-height:100px;min-width:300px;margin-top:50px;padding:20px;text-align:left;" id="treeDiv">
+            Click on "Build Tree" button
+        </div>
+    </div>
+
+    <br><br><br>
+</div>
+</div>

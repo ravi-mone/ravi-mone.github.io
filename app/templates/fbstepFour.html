@@ -1,0 +1,29 @@
+
+    In the inside pages, you need a logout button, to logout from the app, so create one like.
+    <code>&lt;input type="button" value="Logout" onclick="mylogoutfun();" &gt;</code>
+    <br />
+    And in the Controller, write the  "mylogoutfun" function, <br />
+
+</p>
+<pre>
+    <code>
+        $scope.mylogoutfun = function(){
+          //Check the LoginStatus, if connected, then make to logout,
+         //You may be thinking 'getLoginStatus' checking  may not be necessary, but is very much required,
+        //because if the facebook is logout then calling the FB.logout is an error, and will throw error
+        //So better check the status and logout the user.
+
+            FB.getLoginStatus(function(response) {
+                if (response && response.status === 'connected') {
+                    FB.logout(function(response) {
+                        //Now clear the localStorage item, that was set when logged in.
+                        localStorage.removeItem('FBUserData');
+                        $scope.$apply($location.url('/login'));
+                    });
+                }
+            });
+        }
+    </code>
+</pre>
+
+<h3>I am done :), Good Luck floks</h3>

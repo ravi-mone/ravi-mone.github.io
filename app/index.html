@@ -1,0 +1,98 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+      <link rel="shortcut icon" href="../favicon.ico" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+	<script src="cordova.js"></script>
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+      <link rel="stylesheet" href="bower_components/angular-loading-bar/src/loading-bar.css" />
+      <link rel="stylesheet" href="bower_components/angular-slider-master/angular-slider.min.css" />
+
+
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+      <link rel="stylesheet" href="styles/bootstrap-united.css">
+      <link rel="stylesheet" href="styles/flags.css">
+
+
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularAuthApp">
+
+
+    <div>
+        <auth-header company-logo="images/mycompany.png" company-name="AunguComp &#1244;" company-flash-text="角度キャンプ"></auth-header>
+        <!-- Add your site or application content here -->
+        <div class="container-fluid" ng-view=""></div>
+
+    <!--auth-footer footer-text="Copy rights reserved"></auth-footer-->
+    </div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/pepper-grinder/jquery-ui.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://harvesthq.github.io/chosen/chosen.css" />
+    <script src=" http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/ng-facebook/ngFacebook.js"></script>
+    <script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
+    <script src="bower_components/angular-slider-master/angular-slider.js"></script>
+    <link rel="stylesheet" type="text/css" href="asstes/css/style.css" />
+    <link href="asstes/css/lib/angular-carousel.css" rel="stylesheet" type='text/css' />
+    <script src="asstes/js/lib/angular-carousel.js"></script>
+    <script src="asstes/js/lib/angular-touch.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/loginController.js"></script>
+        <script src="scripts/controllers/demoController.js"></script>
+        <script src="scripts/controllers/homeController.js"></script>
+        <script src="scripts/controllers/menuController.js"></script>
+        <script src="scripts/controllers/listController.js"></script>
+        <script src="scripts/controllers/treeController.js"></script>
+        <script src="scripts/controllers/jqueryController.js"></script>
+
+        <!--Directives -->
+        <script src="scripts/directives/header.js"></script>
+        <script src="scripts/directives/footer.js"></script>
+        <script src="scripts/directives/menu.js"></script>
+        <script src="scripts/directives/tree.js"></script>
+        <script src="scripts/directives/chosen.js"></script>
+        <script src="scripts/directives/datepicker.js"></script>
+        <script src="scripts/directives/driverracelist.js"></script>
+
+        <!--Directives -->
+
+        <!--Services -->
+        <script src="scripts/services/authProviders.js"></script>
+        <script src="scripts/services/log.js"></script>
+        <!--Services -->
+    <!-- endbuild -->
+
+</body>
+</html>

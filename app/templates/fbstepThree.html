@@ -1,0 +1,95 @@
+<p><pre>
+                           <code>
+
+    angAuth.run(function($rootScope, $location, $facebook){ //Here $facebook is the ngFaceBook provider name
+
+    // Load the facebook SDK asynchronously, paste as is.
+    (function(){
+        // If we've already installed the SDK, we're done
+        if (document.getElementById('facebook-jssdk')) {return;}
+
+        // Get the first script element, which we'll use to find the parent node
+        var firstScriptElement = document.getElementsByTagName('script')[0];
+
+        // Create a new script element and set its id
+        var facebookJS = document.createElement('script');
+        facebookJS.id = 'facebook-jssdk';
+
+        // Set the new script's source to the source of the Facebook JS SDK
+        facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+        // Insert the Facebook JS SDK into the DOM
+        firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+    }());
+</code>
+    </pre>
+        <pre><code>
+
+    //Here is the interesting part, what I am doing is first check for if value existing in the localstorage, else redirect to login page, (This is safer side code)
+    $rootScope.$on('$locationChangeStart', function () {
+        if((localStorage.getItem('FBUserData') === null) && ($location.path() !== '/login')){
+            $location.url('/login');
+        }
+    });
+        </code>
+    </pre>
+        <pre><code>
+    //And here is the actual business logic to redirect the authenticated user.
+    $rootScope.$on('$locationChangeSuccess', function () {
+
+        $facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
+            function(response) {
+                // If the user manfully enter the inside page, then redirect to login page.
+                if(($location.path() !== '/login')) {
+                    if (response && response.status != 'connected') {
+                            $location.url('/login');
+                    }
+                }else if($location.path() === '/login'){
+                    // If the user is logged in to Facebook,
+                    //then just refreshing the login page of this app, should place the user to home page
+
+                    if (response && response.status === 'connected') {
+                        $location.url('/home');
+                    }
+                }
+            },
+            function(err) {
+                console.log(err);
+        });
+    });
+});
+                           </code></pre>
+<h3>Next, Logic to authenticate the user</h3>
+<b>In Login page/view, create a login button</b>
+
+<code>&lt;input type="button" value="Login" onclick="myloginfun();" &gt;</code>
+<input type="button" value="Login" ><br /><br />
+And in the respective LoginController,
+<pre>
+    <code>
+        $scope.myloginfun = function() {
+            //This is the Facebook login function, to authenticate the user
+            $facebook.login().then(function() {
+
+                //This is the graph api, which will get you the user details
+                $facebook.api("/me").then(
+                    function(response) {
+                        //On Success, store the user details in a cookie,
+                        //I used localStorage, and then redirect the user to home page
+                        localStorage.setItem('FBUserData', angular.toJson(response));
+                        $location.url('/home');
+                    },
+                    function(err) {
+                    //else Display the error message
+                    $scope.welcomeMsg = "Please log in";
+                });
+            });
+        }
+
+    </code>
+</pre>
+(Note: Now you refer the above code having $locationChangeStart and $locationChangeSuccess in run method for better understanding )
+
+
+
+                    </p>

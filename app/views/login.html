@@ -1,0 +1,38 @@
+<div style="text-align: center;">
+<fieldset>
+    <legend>Login Form</legend>
+    <form name="frmLogin" id="frmLogin">
+        {{message}}
+        <table style="height: 200px;margin-left:40%">
+            <tr>
+                <td>Username</td>
+                <td><input type="text" data-ng-model="credientials.username" required="" class="validate[required]" placeholder="Enter the username" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" data-ng-model="credientials.password" required="" class="validate[required]" placeholder="Enter the password" /></td>
+            </tr>
+            <tr  >
+                <td colspan="2" style="text-align:center"><input type="button" name="submit" id="submit" value="Login" ng-click="loginUser(credientials);" /></td>
+            </tr>
+        </table>
+
+    </form>
+    <!--h6><b>Note:</b> Only for Demo Purpose,<hr />
+        Need to implement custom login page, for now, try facebook login</h6>
+    <br />
+   <a class="btn-auth btn-facebook"  ng-click="FBlogin();">
+    <span ng-hide="connectedToFB">
+      Sign in with <b>Facebook</b>
+    </span-->
+    </a>
+
+
+
+</fieldset>
+    <!--a href="#">Forgot the password</a> |  <a href="#/register">New User? Register here</a-->
+</div>
+<script>
+
+
+</script>

@@ -1,0 +1,47 @@
+<style>
+    a{
+        color: #5973A7;
+    }
+
+</style>
+<div ng-class="header">
+    <auth-menu></auth-menu>
+    <div class="col-md-12">
+        <article>
+            Hi Folks,
+            <br />
+            <br />
+            <p>
+                I would like to share, What/How I integrated, <a href="http://ngmodules.org/modules/ngFacebook" target="_blank" >ngFaceBook</a>,
+                in this app. When I tried to integrate I got many issues.
+            <h3>Steps to integrate</h3>
+
+            <div id="accordion" ng:fb:explained>
+                <h3>1. Download and include the zip file</h3>
+                <div>
+                    <ngfb:steps step="stepOne"></ngfb:steps>
+                </div>
+                <h3>2. Set Dependency in angular module, and API key</h3>
+                <div>
+                    <ngfb:steps step="stepTwo"></ngfb:steps>
+                </div>
+                <h3>3. Detailed Code for Checking authentication </h3>
+                <div>
+                    <ngfb:template filePath="templates/fbstepThree.html"></ngfb:template>
+                </div>
+                <h3>4. Logout From App, Code</h3>
+                <div>
+                    <ngfb:template filePath="templates/fbstepFour.html"></ngfb:template>
+                </div>
+            </div>
+
+            </p>
+
+        </article>
+    </div>
+</div>
+<script>
+    $(function() {
+        $( "#accordion" ).accordion({ header: "h3", collapsible: true, active: false, heightStyle: "content"  });
+    });
+</script>

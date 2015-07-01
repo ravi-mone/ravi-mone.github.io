@@ -1,0 +1,25 @@
+{
+  "name": "angularF1",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ravi-mone/angularF1",
+  "authors": [
+    "ravi-mone <ravimone@gmail.com>"
+  ],
+  "description": "FormulaOne drivers listing and filtering demo",
+  "main": "app.js",
+  "keywords": [
+    "angular",
+    "demo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngCordova": "~0.1.15-alpha"
+  }
+}

@@ -1,0 +1,81 @@
+<style>
+    .selected{
+        background-color: lightgray;
+    }
+</style>
+<auth-menu></auth-menu>
+<div class="side_banner"><div>Social</div>
+    <a href="#" target="_blank"><img src="asstes/images/icons/blog.png" /></a>
+    <a href="#" target="_blank"><img src="asstes/images/icons/fb.png" /></a>
+    <a href="#" target="_blank"><img src="asstes/images/icons/in.png" /></a>
+    <a href="#" target="_blank"><img src="asstes/images/icons/tw.png" /></a>
+    <a href="#" target="_blank"><img src="asstes/images/icons/yt.png" /></a>
+</div>
+
+<div class="container">
+    <section>
+        <div >
+
+
+            <div class="ng-cloak thumbHolder">
+                <input type="button" style="border: 0" ng-click="(slideIndex2 = slideIndex2 - 1);showDetails(slideIndex2)"  ng-show="slideIndex2 < (slides2.length)" ng-hide="slideIndex2 === 0" class="prev" >&nbsp;</input>
+                <div class="thumb" ng-repeat="slide in slides2" ng-click="($parent.slideIndex2=$index);showDetails($index)" ng-style="{'background-image': 'url(' + slide.img + ')'}" ng-class="{'is-active': ($parent.slideIndex2==$index)}"></div>
+                <input type="button" style="border: 0"  ng-click="(slideIndex2 = slideIndex2 + 1);showDetails(slideIndex2)"  ng-show="slideIndex2 < (slides2.length - 1)" ng-hide="slideIndex2 == (slides2.length )" class="next" >&nbsp;</input>
+            </div>
+            <div class="description">
+                <h1>{{carosal.data[slideIndex2].title}}</h1>
+                <p>
+                    {{carosal.data[slideIndex2].description  }}
+                </p>
+            </div>
+
+            <div class="input-wrapper">
+                <div class="form-container">
+                    <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required" id="frmUpdate" name="frmUpdate" ng-submit="updateCarosal(carosal)" data-ng-init="init()">
+                        <div class="form-group">
+                            <label for="title">
+                                Title
+                            </label>
+                            <div class="control">
+                                <input type="text" value="{{carosal.title}}" id="title" name="title" required="required" pattern="[a-zA-Z0-9 ]+" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">
+                                Description
+                            </label>
+
+                            <div class="control">
+                                <textarea rows="5" cols="30" id="description" required="required" name="description" pattern="[a-zA-Z0-9 ]+" >{{carosal.description | showThreeWords:3}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control pull-right">
+                                <input type="submit" value="Update" name="Updates" class="btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <table class="pull-right" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="karosal in carosal.data" ng-class="{'selected' : ($index == carosal.selCIndex)}">
+                            <td>{{karosal.title}}</td>
+                            <td>{{karosal.description | showThreeWords:5 }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
