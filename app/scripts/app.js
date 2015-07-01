@@ -69,9 +69,9 @@ angAuth.run(function($rootScope, $location, $facebook){
 			$location.url('/login');
 		}
 	});
-	$rootScope.$on('$locationChangeSuccess', function () {
+	/*$rootScope.$on('$locationChangeSuccess', function () {
 
-	    /*$facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
+	    $facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
 		function(response) {
 		    // If the user manfully enter the inside page, then redirect to login page.
 		    if(($location.path() !== '/login')) {
@@ -89,6 +89,6 @@ angAuth.run(function($rootScope, $location, $facebook){
 		},
 		function(err) {
 		    console.log(err);
-		});*/
-	});
+		});
+	});*/
 });
