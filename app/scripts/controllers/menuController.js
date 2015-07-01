@@ -7,7 +7,9 @@ angAuth.controller('menuController', function ($scope, $location) {
          return true;
      }
     };
-    $scope.userDetails = angular.fromJson(localStorage.getItem('userDetails'));
+    
+    var usrDetails = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : localStorage.getItem('FBUserData');
+    $scope.userDetails = angular.fromJson(usrDetails);
 	
     $scope.FBlogout = function(){
           //Check the LoginStatus, if connected, then make to logout,

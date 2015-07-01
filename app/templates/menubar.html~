@@ -29,7 +29,7 @@
 
                             <div class="btn-group" style="margin-top: 0px;">
                                 <button type="button" class="btn btn-primary" style="padding: 0px;" >
-                                    <img ng-src="http://graph.facebook.com/{{userDetails.id}}/picture?type=square" class="img-responsive img-circle" width="40" height="40" />
+                                    <img ng-src="http://graph.facebook.com/{{FBUserData.id}}/picture?type=square" class="img-responsive img-circle" width="40" height="40" />
                                 </button>
                                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="height: 42px;">
                                     <span class="caret"></span>

@@ -7,12 +7,11 @@ angAuth.controller('menuController', function ($scope, $location) {
          return true;
      }
     };
-    $scope.userDetails = angular.fromJson(localStorage.getItem('userDetails'));
+    
+    var usrDetails = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : localStorage.getItem('FBUserData');
+    $scope.userDetails = angular.fromJson(usrDetails);
+	
     $scope.FBlogout = function(){
-        localStorage.removeItem('userDetails');
-        $location.url('/login');
-    };
-$scope.FBlogout = function(){
           //Check the LoginStatus, if connected, then make to logout,
          //You may be thinking 'getLoginStatus' checking  may not be necessary, but is very much required,
         //because if the facebook is logout then calling the FB.logout is an error, and will throw error
