@@ -70,14 +70,27 @@ angAuth.run(function($rootScope, $location, $facebook){
 		}
 	});
 	$rootScope.$on('$locationChangeSuccess', function () {
-
+	    if((localStorage.getItem('FBUserData') === null) && ($location.path() !== '/login')){
 	    $facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
 		function(response) {
 console.log('response', response);
-		    
+		    // If the user manfully enter the inside page, then redirect to login page.
+		    if(($location.path() !== '/login')) {
+			if (response && response.status != 'connected') {
+			    $location.url('/login');
+			}
+		    }else if($location.path() === '/login'){
+			// If the user is logged in to Facebook,
+			//then just refreshing the login page of this app, should place the user to home page
+
+			if (response && response.status === 'connected') {
+			    $location.url('/home');
+			}
+		    }
 		},
 		function(err) {
 		    console.log(err);
 		});
+           }
 	});
 });
