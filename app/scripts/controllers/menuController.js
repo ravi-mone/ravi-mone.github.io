@@ -7,8 +7,9 @@ angAuth.controller('menuController', function ($scope, $location) {
          return true;
      }
     };
-    
+    console.log(localStorage);
     var usrDetails = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : localStorage.getItem('FBUserData');
+console.log(usrDetails);
     $scope.userDetails = angular.fromJson(usrDetails);
 	
     $scope.FBlogout = function(){
