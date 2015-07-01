@@ -26,7 +26,7 @@ angAuth.config(function ($routeProvider, $locationProvider, $facebookProvider) {
         otherwise({redirectTo: '/login'});
 	
 	//FaceBook Integration	
-	$facebookProvider.setAppId('516672468444595');
+	$facebookProvider.setAppId('712808278831012');
 
 });
 
