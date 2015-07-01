@@ -24,6 +24,9 @@ angAuth.config(function ($routeProvider, $locationProvider, $facebookProvider) {
         when('/myLab', {templateUrl:'views/lobby.html'}).
         when('/notfound', {templateUrl:'views/pagenotfound.html'}).
         otherwise({redirectTo: '/login'});
+	
+	//FaceBook Integration	
+	$facebookProvider.setAppId('516672468444595');
 
 });
 
@@ -34,13 +37,58 @@ angAuth.constant('AppConstants', {
 
 
 angAuth.run(function($rootScope, $location, $facebook){
-    $rootScope.$on('$locationChangeStart', function () {
-       if(angular.toJson(localStorage.getItem('userDetails')).username !== null) {
-           if (($location.path() !== '/login') && (localStorage.getItem('validUser') === 'invalid')) {
-               $location.url('/login');
-           }
-       }else{
-           $location.url('/login');
-       }
-    });
+
+    // Load the facebook SDK asynchronously, paste as is.
+    (function(){
+        // If we've already installed the SDK, we're done
+        if (document.getElementById('facebook-jssdk')) {return;}
+
+        // Get the first script element, which we'll use to find the parent node
+        var firstScriptElement = document.getElementsByTagName('script')[0];
+
+        // Create a new script element and set its id
+        var facebookJS = document.createElement('script');
+        facebookJS.id = 'facebook-jssdk';
+
+        // Set the new script's source to the source of the Facebook JS SDK
+        facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+        // Insert the Facebook JS SDK into the DOM
+        firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+    }());
+
+	$rootScope.$on('$locationChangeStart', function () {
+		if((localStorage.getItem('FBUserData') === null) && ($location.path() !== '/login')){
+			$location.url('/login');
+		}
+		if(angular.toJson(localStorage.getItem('userDetails')).username !== null) {
+			if (($location.path() !== '/login') && (localStorage.getItem('validUser') === 'invalid')) {
+			$location.url('/login');
+			}
+		}else{
+			$location.url('/login');
+		}
+	});
+	$rootScope.$on('$locationChangeSuccess', function () {
+
+	    $facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
+		function(response) {
+		    // If the user manfully enter the inside page, then redirect to login page.
+		    if(($location.path() !== '/login')) {
+			if (response && response.status != 'connected') {
+			    $location.url('/login');
+			}
+		    }else if($location.path() === '/login'){
+			// If the user is logged in to Facebook,
+			//then just refreshing the login page of this app, should place the user to home page
+
+			if (response && response.status === 'connected') {
+			    $location.url('/home');
+			}
+		    }
+		},
+		function(err) {
+		    console.log(err);
+		});
+	});
 });
