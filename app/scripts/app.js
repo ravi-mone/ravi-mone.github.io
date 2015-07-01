@@ -67,7 +67,7 @@ angAuth.run(function ($rootScope, $location, $facebook) {
                 $location.url('/login');
             }
         } else {
-            $location.url('/login');
+           // $location.url('/login');
         }
     });
     $rootScope.$on('$locationChangeSuccess', function () {
