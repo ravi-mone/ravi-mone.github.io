@@ -64,7 +64,7 @@ angAuth.run(function ($rootScope, $location, $facebook) {
         }
         if (angular.toJson(localStorage.getItem('userDetails')).username !== null) {
             if (($location.path() !== '/login') && (localStorage.getItem('validUser') === 'invalid')) {
-                $location.url('/login');
+               // $location.url('/login');
             }
         } else {
            // $location.url('/login');
