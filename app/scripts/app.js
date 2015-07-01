@@ -22,7 +22,7 @@ angAuth.config(function ($routeProvider, $locationProvider, $facebookProvider) {
         when('/demo', {templateUrl: 'views/demo.html', controller: 'demoController'}).
         when('/myLab', {templateUrl: 'views/lobby.html'}).
         when('/notfound', {templateUrl: 'views/pagenotfound.html'}).
-        otherwise({redirectTo: '/login'});
+        otherwise({redirectTo: '/notfound'});
 
     //FaceBook Integration
     $facebookProvider.setAppId('712808278831012');
