@@ -73,7 +73,7 @@ angAuth.run(function($rootScope, $location, $facebook){
 	    if((localStorage.getItem('FBUserData') === null) && ($location.path() !== '/login')){
 	    $facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
 		function(response) {
-console.log('response', response);
+
 		    // If the user manfully enter the inside page, then redirect to login page.
 		    if(($location.path() !== '/login')) {
 			if (response && response.status != 'connected') {

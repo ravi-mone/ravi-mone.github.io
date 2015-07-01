@@ -70,7 +70,7 @@ angAuth.run(function($rootScope, $location, $facebook){
 		}
 	});
 	$rootScope.$on('$locationChangeSuccess', function () {
-
+	    if((localStorage.getItem('FBUserData') === null) && ($location.path() !== '/login')){
 	    $facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
 		function(response) {
 console.log('response', response);
@@ -91,5 +91,6 @@ console.log('response', response);
 		function(err) {
 		    console.log(err);
 		});
+           }
 	});
 });

@@ -4,7 +4,7 @@
 angAuth.controller('loginController', function ($scope, $location, $facebook, $rootScope, raceProviders, $timeout) {
 
 
-$scope.mylogoutfun = function(){
+$scope.FBlogout = function(){
           //Check the LoginStatus, if connected, then make to logout,
          //You may be thinking 'getLoginStatus' checking  may not be necessary, but is very much required,
         //because if the facebook is logout then calling the FB.logout is an error, and will throw error

@@ -4,22 +4,7 @@
 angAuth.controller('loginController', function ($scope, $location, $facebook, $rootScope, raceProviders, $timeout) {
 
 
-$scope.FBlogout = function(){
-          //Check the LoginStatus, if connected, then make to logout,
-         //You may be thinking 'getLoginStatus' checking  may not be necessary, but is very much required,
-        //because if the facebook is logout then calling the FB.logout is an error, and will throw error
-        //So better check the status and logout the user.
 
-            FB.getLoginStatus(function(response) {
-                if (response && response.status === 'connected') {
-                    FB.logout(function(response) {
-                        //Now clear the localStorage item, that was set when logged in.
-                        localStorage.removeItem('FBUserData');
-                        $scope.$apply($location.url('/login'));
-                    });
-                }
-            });
-        }
 
     /*
     * Function called when the user clicks on the login button to login the application.
@@ -47,6 +32,7 @@ $scope.FBlogout = function(){
                     $scope.message = "Valid User!, please wait, will redirect in few seconds...";
                     $timeout(function(){
                         localStorage.setItem('userDetails', JSON.stringify(userCredentials));
+                        console.log('redirect to home');
                         $location.url('/home');
                     }, 2000);
 
