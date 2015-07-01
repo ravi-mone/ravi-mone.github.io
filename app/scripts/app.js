@@ -8,8 +8,7 @@ var angAuth = angular.module('angularAuthApp', [
     'ngFacebook',
     'angular-loading-bar',
     'uiSlider',
-    'angular-carousel',
-    'ngCordova'
+    'angular-carousel'
 
 ]);
 
