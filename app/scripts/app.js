@@ -93,8 +93,5 @@ angAuth.run(function ($rootScope, $location, $facebook) {
                     console.log(err);
                 });
         }
-        if (angular.toJson(localStorage.getItem('userDetails')).username !== null) {
-            $location.url('/home');
-        }
     });
 });
