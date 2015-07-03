@@ -1,6 +1,8 @@
 'use strict';
 
 angAuth.controller('homeController', function ($scope, raceProviders) {
+
+    alert('In home');
     $scope.driversList=[];
     var data;
     raceProviders.getDrivers().then(function (response) {
