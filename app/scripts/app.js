@@ -38,7 +38,7 @@ angAuth.constant('AppConstants', {
 angAuth.run(function ($rootScope, $location, $facebook) {
 
     // Load the facebook SDK asynchronously, paste as is.
-    (function () {
+   /* (function () {
         // If we've already installed the SDK, we're done
         if (document.getElementById('facebook-jssdk')) {
             return;
@@ -94,4 +94,5 @@ angAuth.run(function ($rootScope, $location, $facebook) {
                 });
         }
     });
+    */
 });
