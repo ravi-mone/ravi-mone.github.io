@@ -38,7 +38,7 @@ angAuth.constant('AppConstants', {
 angAuth.run(function ($rootScope, $location, $facebook) {
 
     // Load the facebook SDK asynchronously, paste as is.
-   /* (function () {
+    (function () {
         // If we've already installed the SDK, we're done
         if (document.getElementById('facebook-jssdk')) {
             return;
@@ -71,7 +71,7 @@ angAuth.run(function ($rootScope, $location, $facebook) {
         }
     });
     $rootScope.$on('$locationChangeSuccess', function () {
-        if ((localStorage.getItem('FBUserData') === null) && ($location.path() !== '/login')) {
+        if ((localStorage.getItem('FBUserData') != null) && ($location.path() !== '/login')) {
             $facebook.getLoginStatus().then( //This is FB getLoginStatus api to check the user status.
                 function (response) {
 
@@ -94,5 +94,4 @@ angAuth.run(function ($rootScope, $location, $facebook) {
                 });
         }
     });
-    */
 });
