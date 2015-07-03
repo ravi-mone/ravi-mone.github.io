@@ -1,6 +1,6 @@
 'use strict';
 
-angAuth.controller('menuController', function ($scope, $location) {
+angAuth.controller('menuController', function ($scope, $location, $facebook) {
 
     $scope.routeIs = function(path){
      if($location.path() === path){
