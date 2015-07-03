@@ -25,7 +25,7 @@ angAuth.config(function ($routeProvider, $locationProvider, $facebookProvider) {
         otherwise({redirectTo: '/notfound'});
 
     //FaceBook Integration
-    $facebookProvider.setAppId('712808278831012');
+    $facebookProvider.setAppId('516672468444595');
 
 });
 
@@ -60,14 +60,14 @@ angAuth.run(function ($rootScope, $location, $facebook) {
 
     $rootScope.$on('$locationChangeStart', function () {
         if ((localStorage.getItem('FBUserData') === null) && ($location.path() !== '/login')) {
-           // $location.url('/login');
+            $location.url('/login');
         }
         if (angular.toJson(localStorage.getItem('userDetails')).username !== null) {
             if (($location.path() !== '/login') && (localStorage.getItem('validUser') === 'invalid')) {
-               // $location.url('/login');
+                $location.url('/login');
             }
         } else {
-           // $location.url('/login');
+            $location.url('/login');
         }
     });
     $rootScope.$on('$locationChangeSuccess', function () {
