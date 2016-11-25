@@ -1,0 +1,42 @@
+<div class="card_menu_wrap" style="z-index:10000;">
+  <div class="list-group">
+    <a class="list-group-item active" ui-sref="eventlist" style="color:black;">
+      <span style="float:left;padding-right:25px"><img src="Web/ic_all_events.png" /></span>
+      <b>All Events</b>
+      <h6 class="greyColor">Browse all Events</h6>
+    </a>
+
+    <a class="list-group-item" ui-sref="attendeelist" style="color:black;">
+      <span style="float:left;padding-right:25px"><img src="Web/ic_attendee_list.png" /></span>
+      <b>Attendee List</b>
+      <h6 class="greyColor">View list of people who are attending</h6>
+    </a>
+
+    <a class="list-group-item" href="" style="color:black;" ng-click="menuCtrl.linkedIn(2)">
+      <span
+      style="float:left;padding-right:25px"><img src="Web/ic_business_card.png" /></span>
+      <b>Business Card</b>
+      <h6 class="greyColor">Create and share the Business card</h6>
+    </a>
+
+    <a class="list-group-item" href="" style="color:black;" ng-click="menuCtrl.linkedIn(3)">
+      <span style="float:left;padding-right:25px"><img src="Web/ic_my_schedule.png" /></span>
+      <b>My Schedule</b>
+      <h6 class="greyColor">View personel meeting schedule</h6>
+    </a>
+
+    <a class="list-group-item" ui-sref="about" style="color:black;">
+      <span style="float:left;padding-right:25px"><img src="Web/ic_attendee_list.png" /></span>
+      <b>About Conference</b>
+      <h6 class="greyColor">View details about conference</h6>
+    </a>
+
+  </div>
+</div>
+
+<script>
+$("div a").click(function() {
+  $(this).parent().children().removeClass("active");
+  $(this).addClass("active");
+});
+</script>

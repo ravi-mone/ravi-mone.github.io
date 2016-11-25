@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Conference App</title>
+	<link rel="stylesheet" href="app.css">
+	<meta charset = "utf-8">
+  <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+	<link href = "http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel = "stylesheet">
+	<link rel="stylesheet" href="libs/star-rating.css">
+	<link rel="stylesheet" href="libs/slick.css">
+  <link rel="stylesheet" href="libs/slick-theme.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script src="libs/jquery.min.js"></script>
+	<script src="libs/star-rating.js"></script>
+	<script src="libs/materialize.min.css"></script>
+	<!-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+	<script src="libs/materialize.min.js"></script>
+  <script src="libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="//platform.linkedin.com/in.js">
+    api_key: 8165atpxfwoucv
+    authorize: true
+    onLoad: onLinkedInLoad
+</script>
+
+<script type="text/javascript">
+    function onLinkedInLoad() {
+        IN.Event.on(IN, "auth", getProfileData);
+    }
+
+    // Handle the successful return from the API call
+    function onSuccess(data) {
+        console.log("hahahahahahahahahahahahaha",data);
+				if(localStorage.getItem('msflag')==3){
+					window.location.href='#/mc';
+				}
+				console.log("businesscardjnsbdkjsnk",localStorage.getItem('bcflag'));
+				if(localStorage.getItem('bcflag')==2){
+					console.log("businesscard");
+					window.location.href='#/businesscard';
+				}
+				if(localStorage.getItem('atflag')==1){
+					var id=localStorage.getItem('eventId');
+					window.location.href='#/details/'+id;
+				}
+				var $body = angular.element(document.body);
+				 var $rootScope = $body.scope().$root;
+				 $rootScope.$apply(function () {
+						 $rootScope.profileData =data;
+						 console.log("RootScope",$rootScope.login);
+				 });
+    }
+
+    // Handle an error response from the API call
+    function onError(error) {
+        console.log(error);
+    }
+
+    // Use the API call wrapper to request the member's basic profile data
+    function getProfileData() {
+				// localStorage.setItem("login" , true);
+				// console.log(localStorage.getItem("login"));
+				var $body = angular.element(document.body);
+				 var $rootScope = $body.scope().$root;
+				 $rootScope.$apply(function () {
+						 $rootScope.login =true;
+						 console.log("RootScope",$rootScope.login);
+				 });
+
+				IN.API.Profile("me").fields("first-name", "last-name", "email-address","picture-url","id","industry","positions")
+			 	.result(onSuccess).error(onError);
+    }
+
+</script>
+</head>
+<!-- 81yqmo6bno0bcc -->
+<body>
+		<div class="container-fluid remove-margin">
+			 <div class="row remove-margin upper-content">
+
+				 <div class="modal fade" id="businesscard" role="dialog">
+				   <div class="modal-dialog modal-sm">
+
+				     <!-- Modal content-->
+				     <div class="modal-content">
+				       <div class="modal-header">
+				         <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+				         <h4 class="modal-title" style="text-align:center;">Message</h4>
+				       </div>
+				       <div class="modal-body">
+				     <p style="text-align:center;">
+				       You need to log in before viewing or editing Business card. Do you want to logIn to avail this feature now??
+				     </p>
+				       </div>
+				       <div class="modal-footer">
+				         <button type="submit" class="nohover1 col-md-2 col-md-push-3 col-md-pull-7" data-dismiss="modal">
+				           No</button>
+				          <button type="submit" ng-click="menuCtrl.afterlogin()" class="btn btn-success col-md-2 col-md-push-4 col-md-pull-6" data-dismiss="modal">
+				             Yes
+				          </button>
+				        </div>
+				     </div>
+				   </div>
+				 </div>
+
+				 <div class="modal fade" id="myschedule" role="dialog">
+					 <div class="modal-dialog modal-sm">
+
+						 <!-- Modal content-->
+						 <div class="modal-content">
+							 <div class="modal-header">
+								 <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+								 <h4 class="modal-title" style="text-align:center;">Message</h4>
+							 </div>
+							 <div class="modal-body">
+						 <p style="text-align:center;">
+							 You need to log in before viewing your schedule. Do you want to logIn to avail this feature now??
+						 </p>
+							 </div>
+							 <div class="modal-footer">
+								 <button type="submit" class="nohover1 col-md-2 col-md-push-3 col-md-pull-7" data-dismiss="modal">
+									 No</button>
+									<button type="submit" ng-click="menuCtrl.afterlogin()" class="btn btn-success col-md-2 col-md-push-4 col-md-pull-6" data-dismiss="modal">
+										 Yes
+									</button>
+								</div>
+						 </div>
+					 </div>
+				 </div>
+
+
+
+				       <div class="modal fade" style="z-index:10000;" id="attend" role="dialog">
+				         <div class="modal-dialog modal-sm">
+
+				           <!-- Modal content-->
+				           <div class="modal-content">
+				             <div class="modal-header">
+				               <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+				               <h4 class="modal-title" style="text-align:center;">Message</h4>
+				             </div>
+				             <div class="modal-body">
+				           <p style="text-align:center;">
+				             You need to log in before selecting to attend. Do you want to logIn to avail this feature now??
+				           </p>
+				             </div>
+				             <div class="modal-footer">
+				               <button type="submit" class="nohover1 col-md-2 col-md-push-3 col-md-pull-7" data-dismiss="modal">
+				                 No</button>
+				                <button type="submit" ng-click="menuCtrl.afterlogin()" class="btn btn-success col-md-2 col-md-push-4 col-md-pull-6" data-dismiss="modal">
+				                   Yes
+				                </button>
+				              </div>
+				           </div>
+				         </div>
+				       </div>
+
+
+
+				<div class="col-md-3 remove-margin left"  ng-show=flag>
+					<div class="uheader">
+					 	<d1></d1>
+					</div>
+					<div class="bheader">
+					<d3></d3>
+					</div>
+				</div>
+				<div class="col-md-9 remove-margin right">
+
+
+					<ui-view></ui-view>
+
+
+				</div>
+      </div>
+		</div>
+			<div id="dummy" onmousedown="console.log('onmousedown')">
+			</div>
+			<div class="row remove-margin">
+				<div class="footer" ng-show=flag>
+				<d2></d2>
+				</div>
+			</div>
+
+<script src="libs/angular.min.js"></script>
+<script src="libs/angular-ui-router.min.js"></script>
+<script src="libs/slick.js"></script>
+<script src="libs/angular-slick.min.js"></script>
+<script src="libs/angular-route.min.js"></script>
+<script src="libs/ngStorage.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script> -->
+<script src="libs/ui-bootstrap-tpls.js"></script>
+<script src="libs/moment.js"></script>
+<script src="libs/angular-moment.js"></script>
+<script src="app.min.js"></script>
+</body>
+</html>

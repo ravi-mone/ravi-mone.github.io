@@ -1,0 +1,106 @@
+<div id="fb-root"></div>
+<div class="container remove-margin">
+  <div class="top_container">
+    <d4><h3>Business Card</h3></d4>
+      <span style="margin-left:700px"><d4></d4></span>
+  </div>
+    <div class="col-md-6 business-card">
+    <div class="businessUpper" style="height:200px;;">
+      <div class=col-md-4>
+        <span style="float:left;padding-top:20px;">
+          <img id="pic" class="businesscardprofile" ng-src="{{person.pictureUrl}}" alt="profilePicture" height=100px width=100px>
+        </span>
+      </div>
+      <div class="col-md-8">
+        <div class="media-body">
+          <b><p id="fname">{{person.firstName}}<span id="lname"> {{person.lastName}}</span></p></b><br />
+          <p id="pos">{{person.positions.values[0].title}}</p><br />
+          <b><p id="comp">{{person.positions.values[0].company.name}}</p></b><br />
+          <p id="email">{{person.emailAddress}}</p><br />
+          <div ng-if="person.pnumber">
+            <p id="phno">{{person.pnumber}}</p><br />
+          </div>
+          <div ng-if="person.website">
+            <p id="web">{{person.website}}</p>
+          </div>
+        </div><br />
+
+      </div>
+    </div><br />
+    <hr style="height:2px;border:none;background-color:#EFEFEF;">
+    <div class="businessLower" style="border-top:2px;height:20%">
+
+      <div class="col-md-6 nofocus" style="text-align:center;">
+        <a href="#/editbusiness">
+          <img src="Web/ic_edit_business_card.png"/>
+        </a>
+      </div>
+      <div class="col-md-6 nofocus" style="text-align:center;">
+        <a data-toggle="modal" data-target="#share" href="">
+          <img src="Web/ic_share_business_card.png" />
+        </a>
+      </div>
+    </div>
+    </div>
+    <div class="modal fade" id="share" role="dialog">
+      <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" ng-click="edc.setflag()"/>
+            <h4 class="modal-title" style="text-align:center;">Share via social media</h4>
+          </div>
+          <div class="modal-body" style="text-align:center;height:90px;">
+          <div class="col-md-4"><a href="" data-dismiss="modal" ng-click="bcc.shareLinkedin()">
+              <img src="Web/ic_linkedin.png"/>
+            </a></div>
+          <div class="col-md-4"><a href=""><div id="shareBtn">
+              <img src="Web/ic_facebook.png"/>
+          </div></a>
+        </div>
+        <div class="col-md-4">
+          <a href="https://twitter.com/share" data-text="custom share text" target="_blank" data-show-count="false">
+          <img src="Web/ic_twitter.png" />
+        </a>
+      </div>
+        <div ng-if="false"><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=333536290340083";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+  $(document).ready(function() {
+    $.ajaxSetup({ cache: true });
+    $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+      FB.init({
+        appId: '333536290340083',
+        version: 'v2.8'
+      });
+
+    });
+    console.log("kdijfkibusinessCard",$("#fname").scope().person.firstName);
+
+  });
+
+
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'feed',
+    display: 'popup',
+    link:'https://www.facebook.com/sharer/sharer.php?u=http://localhost:9000/businesscard',
+    caption:'Name:'+$("#fname").scope().person.firstName+' '+$("#lname").scope().person.lastName+'\n'+'Designation:'+$("#pos").scope().person.positions.values[0].title+'\n'+'Company:'+$("#comp").scope().person.positions.values[0].company.name+'\n'+'Email:'+$("#email").scope().person.emailAddress
+  }, function(response){});
+}
+    $("#rateid").rating();
+ </script>

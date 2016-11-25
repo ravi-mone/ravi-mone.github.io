@@ -1,0 +1,413 @@
+<div id="fb-root"></div>
+
+<div class="top_container">
+  <d4><h3>Event Details</h3></d4>
+  <span style="margin-left:700px"><d4></d4></span>
+</div>
+
+<div class="test">
+  <div class="row remove-margin">
+    <div class="col-md-12" style="padding-left: 30px;">
+      <h4 style="margin-top:20px;padding-bottom:10px;">{{detail.event[0].name}}</h4>
+        <h5 style="margin-top=10px" class="greyColor">{{eventDate}}</h5>
+        <h5 style="text-align:justify;color:grey;margin-top:10px;padding-bottom:10px;">{{detail.event[0].description}}</h5>
+        <p id="fname" ng-if=false>{{detail.event[0].id}}</p>
+    </div>
+  </div>
+  <div class="row remove-margin">
+    <div class="col-md-11  content_detail">
+        <div class="row remove-margin">
+          <div class="col-md-3">
+            <h5 class="label" style="text-align:left ;color:grey; font-size:small;">Overall Rating</h5>
+            <fieldset class="rating disable_me" style="margin-left:0 !important">
+               <input type="radio" value="5" ng-model="detail.avgRating"/>
+                 <label class = "full" for="star5"></label>
+               <input type="radio" value="4.5" ng-model="detail.avgRating"/>
+                 <label class="half" for="star4half"></label>
+               <input type="radio" value="4" ng-model="detail.avgRating"/>
+                 <label class = "full" for="star4"></label>
+               <input type="radio" value="3.5" ng-model="detail.avgRating" />
+                 <label class="half" for="star3half"></label>
+               <input type="radio" value="3" ng-model="detail.avgRating"/>
+                 <label class = "full" for="star3"></label>
+               <input type="radio" value="2.5" ng-model="detail.avgRating"/>
+                 <label class="half" for="star2half"></label>
+               <input type="radio" value="2" ng-model="detail.avgRating"/>
+                 <label class = "full" for="star2"></label>
+               <input type="radio" value="1.5" ng-model="detail.avgRating"/>
+                 <label class="half" for="star1half"></label>
+               <input type="radio" value="1" ng-model="detail.avgRating" />
+                 <label class = "full" for="star1"></label>
+               <input type="radio" value="0.5" ng-model="detail.avgRating"/>
+                 <label class="half" for="starhalf"></label>
+           </fieldset>
+          </div>
+          <div class="col-md-3 col-md-offset-6 disable_me" style="padding-left:60px;">
+            <h5 class="label" style="text-align:left ;color:grey; font-size:small;">My ratings</h5>
+            <fieldset class="rating" style="margin-left:0 !important">
+               <input type="radio" value="5" ng-model="detail.myRating"/>
+                 <label class = "full" for="star5"></label>
+               <input type="radio" value="4.5" ng-model="detail.myRating"/>
+                 <label class="half" for="star4half"></label>
+               <input type="radio" value="4" ng-model="detail.myRating"/>
+                 <label class = "full" for="star4"></label>
+               <input type="radio" value="3.5" ng-model="detail.myRating" />
+                 <label class="half" for="star3half"></label>
+               <input type="radio" value="3" ng-model="detail.myRating"/>
+                 <label class = "full" for="star3"></label>
+               <input type="radio" value="2.5" ng-model="detail.myRating"/>
+                 <label class="half" for="star2half"></label>
+               <input type="radio" value="2" ng-model="detail.myRating"/>
+                 <label class = "full" for="star2"></label>
+               <input type="radio" value="1.5" ng-model="detail.myRating"/>
+                 <label class="half" for="star1half"></label>
+               <input type="radio" value="1" ng-model="detail.myRating" />
+                 <label class = "full" for="star1"></label>
+               <input type="radio" value="0.5" ng-model="detail.myRating"/>
+                 <label class="half" for="starhalf"></label>
+           </fieldset>
+          </div>
+        </div>
+        <hr>
+        <div class="row remove-margin">
+          <div class="col-md-4">
+            <h5 class="greyColor">Attendee Type : <span style="color:black;font-size:medium">{{detail.event[0].attendeeType}}</span></h5>
+          </div>
+          <div class="col-md-4 col-md-offset-4" style="padding-left:92px;">
+            <h5 class="greyColor">Attendee Level : <span style="color:black;font-size:medium">{{detail.event[0].attendeeLevel}}</span></h5>
+          </div>
+        </div>
+        <div class="row remove-margin">
+          <div class="col-md-4">
+            <h5 class="greyColor">Time : <span style="color:black;font-size:medium">{{time}}</span></h5>
+          </div>
+          <div class="col-md-3 col-md-offset-5" style="padding-left:90px;">
+            <h5 class="greyColor">Room : <span style="color:black;font-size:medium">{{detail.event[0].room}}</span></h5>
+          </div>
+        </div>
+<br />
+      <div class="row remove-margin">
+
+        <div class="event_speaker">
+          <h5>
+            <img src="Web/ic_speakers.png" height="30px" width="30px" />
+            <span style="color:red;">Speakers</span></h5><br />
+        </div>
+        <div class="col-md-12">
+          <a href="" style="text-decoration:none; color:black;">
+            <div ng-repeat="obj in detail.speaker" ng-click="edc.speakerDetail(obj.id)">
+                <span style="float:left">
+                  <img src={{obj.profilePicture}} class="img-circle" height="50px" width="50px" style="margin-right:20px;"/>
+                </span>
+                  <b style="font-size:18px;">{{obj.firstName}}</b><br /><span style="float:right"><img src="Web/ic_event_arrow_right.png"></span>
+
+                  <h5 style="color:grey">{{obj.designation}}</h5><hr>
+            </div>
+          </a>
+    </div>
+</div>
+
+<div class="btn-group dropup fab">
+    <div class="open">
+    <button type="button" ng-click="edc.setflag()" class="btn dropdown-toggle" data-toggle="collapse" data-target="#demo" aria-haspopup="true" aria-expanded="false">
+    <a data-backdrop="static" data-keyboard="false" href="">
+        <img src={{fab}} style="margin-left: -15px; margin-top: -10px;"/>
+      </a>
+  </button>
+  </div>
+  <!-- <div class="dropdown-menu"> -->
+  <!-- <div id="demo" class="dropdown-menu" onclick="flag=true">
+    <ul>
+      <button data-toggle="modal" data-target="#rating" ng-disabled="rateflag" class="btn starbuttoncolor nofocus">
+======= -->
+  <div id="demo" class="dropdown-menu" onclick="flag=true">
+    <ul ng-if="(rateflag && !dateexpire) || atrate">
+      <button data-toggle="modal" data-target="#notrate" class="btn starbuttoncolor rate nofocus">
+        <img src="Web/ic_floating_rating.png" />
+      </button>
+      <a data-toggle="modal" data-target="#share" href="" class="nofocus;">
+        <img src="Web/ic_floating_share.png" />
+      </a>
+      <a data-toggle="modal" data-target="#location" href="" class="nofocus;">
+        <img src="Web/ic_floating_map.png" />
+      </a>
+      <button ng-click="edc.attendToggle()" class="btn starbuttoncolor nofocus" data-toggle="modal" data-target="#attendence" href="" >
+        <img src="Web/ic_floating_not_attendee.png" />
+      </button>
+    </ul>
+
+    <!--Disable attending button  -->
+    <ul ng-if="dateexpire&&!rateflag">
+      <button data-toggle="modal" data-target="#rating" class="btn starbuttoncolor nofocus">
+        <img src="Web/ic_floating_rating.png" />
+      </button>
+      <a data-toggle="modal" data-target="#share" href="" class="nofocus;">
+        <img src="Web/ic_floating_share.png" />
+      </a>
+      <a data-toggle="modal" data-target="#location" href="" class="nofocus;">
+        <img src="Web/ic_floating_map.png" />
+      </a>
+      <button class="btn starbuttoncolor rate nofocus" data-toggle="modal" data-target="#notattend" href="" >
+        <img src="Web/ic_floating_not_attendee.png" />
+      </button>
+
+    </ul>
+
+    <!--Cann't attend and cann't rate-->
+    <ul ng-if="rateflag && dateexpire">
+      <button data-toggle="modal" data-target="#notrate" class="btn starbuttoncolor rate nofocus">
+        <img src="Web/ic_floating_rating.png" />
+      </button>
+      <a data-toggle="modal" data-target="#share" href="" class="nofocus;">
+        <img src="Web/ic_floating_share.png" />
+      </a>
+      <a data-toggle="modal" data-target="#location" href="" class="nofocus;">
+        <img src="Web/ic_floating_map.png" />
+      </a>
+      <button  class="btn starbuttoncolor rate nofocus" data-toggle="modal" data-target="#notattend" href="" >
+        <img src="Web/ic_floating_not_attendee.png" />
+      </button>
+    </ul>
+
+  </div>
+  <!-- </div> -->
+</div>
+
+
+ <div class="modal fade" id="rating" role="dialog">
+   <div class="modal-dialog modal-sm">
+
+     <!-- Modal content-->
+     <div class="modal-content">
+       <div class="modal-header">
+         <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" ng-click="edc.setflag()"/>
+         <h4 class="modal-title" style="text-align:center;">Rate this event</h4>
+       </div>
+       <div class="modal-body">
+         <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" value="5" ng-model="mainRating"/>
+              <label class = "full" for="star5"></label>
+            <input type="radio" id="star4half" name="rating" value="4.5" ng-model="mainRating"/>
+              <label class="half" for="star4half"></label>
+            <input type="radio" id="star4" name="rating" value="4" ng-model="mainRating"/>
+              <label class = "full" for="star4"></label>
+            <input type="radio" id="star3half" name="rating" value="3.5" ng-model="mainRating" />
+              <label class="half" for="star3half"></label>
+            <input type="radio" id="star3" name="rating" value="3" ng-model="mainRating"/>
+              <label class = "full" for="star3"></label>
+            <input type="radio" id="star2half" name="rating" value="2.5" ng-model="mainRating"/>
+              <label class="half" for="star2half"></label>
+            <input type="radio" id="star2" name="rating" value="2" ng-model="mainRating"/>
+              <label class = "full" for="star2"></label>
+            <input type="radio" id="star1half" name="rating" value="1.5" ng-model="mainRating"/>
+              <label class="half" for="star1half"></label>
+            <input type="radio" id="star1" name="rating" value="1" ng-model="mainRating" />
+              <label class = "full" for="star1"></label>
+            <input type="radio" id="starhalf" name="rating" value="0.5" ng-model="mainRating"/>
+              <label class="half" for="starhalf"></label>
+        </fieldset>
+       </div>
+       <div class="modal-footer"  ng-click="edc.setflag()">
+         <button type="submit" ng-click="mainRating=detail.myRating" class="nohover1 col-md-2 col-md-push-3 col-md-pull-7" data-dismiss="modal">
+          Cancel</button>
+          <button type="submit" ng-click="edc.sendrate(mainRating)" class="btn btn-success col-md-2 col-md-push-4 col-md-pull-6" data-dismiss="modal">
+             Rate it
+          </button>
+        </div>
+     </div>
+   </div>
+ </div>
+
+<div class="modal fade" id="share" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" ng-click="edc.setflag()"/>
+        <h4 class="modal-title" style="text-align:center;">Share via social media</h4>
+      </div>
+      <div class="modal-body" style="text-align:center; height:90px;">
+      <div class="col-md-4">  <a data-dismiss="modal" ng-click="edc.shareLinkedin()">
+          <img src="Web/ic_linkedin.png"/>
+        </a>
+      </div>
+      <div class="col-md-4">
+<div style="text-align:center;" ng-click="edc.setflag()" data-href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:9000/#/details/&#123;&#123;detail.event[0].id&#125;&#125;&quot;" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+  <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu=http://localhost:9000/#/details/{{detail.event[0].id}}">
+  <img src="Web/ic_facebook.png"/>
+  </a>
+</div>
+</div>
+<div class="col-md-4">
+    <a href="https://twitter.com/share" target="_blank" data-show-count="false">
+      <img src="Web/ic_twitter.png" />
+    </a>
+    <div ng-if="false"><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+  </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="attendence" role="dialog" ng-if="login">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+        <h4 class="modal-title" style="text-align:center;">Confirm your attendence</h4>
+      </div>
+      <div class="modal-body">
+      <p style="text-align:center;">
+        {{content}}
+      </p>
+      </div>
+      <div class="modal-footer"  ng-click="edc.setflag()">
+        <button type="submit" ng-click="attendence=false" class="nohover1 col-md-2 col-md-push-3 col-md-pull-7" data-dismiss="modal">
+          No</button>
+         <button type="submit" ng-click="edc.attendence()" class="btn btn-success col-md-2 col-md-push-4 col-md-pull-6" data-dismiss="modal">
+            Yes
+         </button>
+       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="location" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Location-->
+    <div class="modal-content" style="margin-top:50px;">
+      <div class="modal-header">
+        <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+        <h4 class="modal-title" style="text-align:center;">Venue</h4>
+      </div>
+      <div class="modal-body">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15555.550530078757!2d77.586017!3d12.914943!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa49c1b35271b1cba!2sTechJini+Solutions+Pvt.+Ltd.!5e0!3m2!1sen!2sin!4v1479914437946" width="540" height="430" frameborder="0" style="border:0" allowfullscreen>
+    </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--For not to rate   -->
+<div class="modal fade" id="notrate" role="dialog" >
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+        <h4 class="modal-title" style="text-align:center;">Message</h4>
+      </div>
+      <div class="modal-body">
+      <p style="text-align:center;">
+      Sorry,You are not supposed to Rate this event Now. The possible cases are:</p>
+      <p style="text-align:center;">1. The user has not yet registered for the application.</p>
+      <p style="text-align:center;">2. The event is scheduled to happen and the user cannot rate a future event.</p>
+
+      </p>
+      </div>
+      <div class="modal-footer"  ng-click="edc.setflag()">
+        <button type="submit" class="btn btn-success col-md-2 col-md-push-5 col-md-pull-5" data-dismiss="modal">
+           Ok
+        </button>
+       </div>
+    </div>
+  </div>
+</div>
+
+<!--  For not to attend-->
+<div class="modal fade" id="notattend" role="dialog" >
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+        <h4 class="modal-title" style="text-align:center;">Message</h4>
+      </div>
+      <div class="modal-body">
+      <p style="text-align:center;">
+  Sorry,This Event Is Already Started/Finished. You can't Alter/Register/Unregister status now.
+      </p>
+      </div>
+      <div class="modal-footer"  ng-click="edc.setflag()">
+        <button type="submit" class="btn btn-success col-md-2 col-md-push-4 col-md-pull-6" data-dismiss="modal">
+           Ok
+        </button>
+       </div>
+    </div>
+  </div>
+</div>
+
+<!--  For confirmance-->
+<div class="modal fade" id="confirm" role="dialog" >
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+        <h4 class="modal-title" style="text-align:center;"></h4>
+      </div>
+      <div class="modal-body">
+      <p style="text-align:center;font-size:15px;">
+        Participation Confirmed.      </p>
+      </div>
+      <div class="modal-footer"  ng-click="edc.setflag()">
+        <button type="submit" class="btn btn-success col-md-2 col-md-push-5 col-md-pull-5" data-dismiss="modal">
+           Ok
+        </button>
+       </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+<script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=333536290340083";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  $(document).ready(function() {
+    $.ajaxSetup({ cache: true });
+    $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+      FB.init({
+        appId: '333536290340083',
+        version: 'v2.8'
+      });
+
+    });
+
+
+  });
+
+
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'feed',
+    display: 'popup',
+    link:'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu=http://localhost:9000/#/details/'+body.scope().,
+    caption:'Check this Event'
+  }, function(response){
+    alert("successfully Posted in your TimeLine!!")
+  });
+}
+    $("#rateid").rating();
+
+
+    $(document).on('click',function(){
+      if(flag==true)
+    	$('.collapse').collapse('show');
+    })
+ </script>

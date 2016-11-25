@@ -1,0 +1,53 @@
+<div class="container remove-margin">
+  <div class="top_container">
+  <d4><h3>My Schedule</h3></d4>
+  <span style="margin-left:600px">
+    <d4></d4>
+  </span>
+</div>
+
+<div class="col-md-12 test">
+  <div ng-if="res.length">
+  <div ng-if="!errormsg.length">
+    <uib-tabset active="currentTab">
+       <slick class="slider" settings="myScheduleScroll">
+          <uib-tab  ng-repeat="obj in res" href="#list" select=mc.getDateEvents(obj.printDate,obj.date) data-toggle="tab">
+            <uib-tab-heading><div class="test1">{{obj.day}}<br /> {{obj.printDate}}</div></uib-tab-heading>
+            <p class="greyColor">
+            {{obj.month}}<br />
+            </p>
+              <div class="content_container contentclass">
+                <div class="tab-pane fade in active" id="list">
+                  <div ng-repeat="item in Array" ng-if="!errormsg.length">
+               <div class="col-md-1">
+                  <h5>{{item.startTime}}</h5>
+                </div>
+                <a href="">
+                 <div class="col-md-11 detailh" ng-click="mc.detailfun(item.id)">
+                   <div class="card">
+                      <div class="container_card1">
+                          <h5>{{item.name}}</h5>
+                          <hr style="border-top: 1px solid #C6C3C3;"/>
+                          <p style="float:left;color:grey;"><img src="Web/ic_map.png" style="float:left;" />
+                            <span>at {{item.room}}</span>
+                          </p>
+                          <p style="float:right;color:grey;"><img src="Web/ic_clock.png" style="float:left;" /><span>End: {{item.endTime}}</span></p>
+
+                     </div>
+                   </div>
+                 </div>
+                   </a>
+               </div>
+            </div>
+          </div>
+         </uib-tab>
+        </slick>
+     </uib-tabset>
+    </div>
+  </div>
+</div>
+</div>
+    <div ng-if="errormsg.length">
+       <h4 style="text-align:center;margin-top:150px;"><b>No events found</b></h4>
+   </div>
+</div>

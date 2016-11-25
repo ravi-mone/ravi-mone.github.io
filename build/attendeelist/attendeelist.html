@@ -1,0 +1,35 @@
+<div class="container remove-margin">
+  <div class="top_container">
+    <div class="line">
+      <d4><h3>Attendee List</h3></d4>
+      <span style="margin-left:500px"><input type="text" class="search-button" ng-model="attendee_search" name="search" placeholder="Search.."  ng-class="{'myClass': !showbox}">
+      <img src="Web/ic_search.png" ng-click="alc.search()" />
+      <d4></d4>
+      </span>
+    </div>
+
+  </div>
+  <div class="row attendee">
+      <div class="col-md-12" ng-repeat="x in attendeelist | filter:attendee_search" style="margin-left:30px;">
+          <span style="float:left;"><img class="img-circle" src="{{x.profilePicture}}" height="80px" width="80px"/></span>
+        <div class="attendeeprofile">
+          <b>{{x.firstName}} {{x.lastName}}</b>
+          <h6 class="greyColor"style="font-size:16px;">{{x.designation}}</h6>
+        </div>
+        <hr />
+      </div>
+      <div ng-show="(attendeelist | filter:attendee_search).length==0">
+         <h4 style="margin-left:40%;">No attendee found</h4>
+     </div>
+  </div>
+</div>
+
+
+<!-- detailfun(id) {
+   this.timeout(() => {
+      console.log('IT WORKS', this);
+      this.state.go("details", {
+         id
+      });
+   }, 0);
+} -->

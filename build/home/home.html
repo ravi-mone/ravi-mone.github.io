@@ -1,0 +1,35 @@
+<div class="line">
+<ng-transclude>
+  <a href="" class="logouticon">
+    <img src="Web/ic_logout.png" ng-click='hc.logout()' ng-show="login" />
+  </a>
+</ng-transclude>
+  <div ng-hide="true">
+    <script type="in/Login"></script>
+  </div>
+</div>
+
+<div class="modal fade" style="z-index:10000;" id="logout" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="Web/ic_popup_close.png" class="close" data-dismiss="modal" />
+        <h4 class="modal-title" style="text-align:center;">Message</h4>
+      </div>
+      <div class="modal-body">
+    <p style="text-align:center;">
+      Do you really want to log out of linkedin?
+    </p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="nohover1 col-md-2 col-md-push-3 col-md-pull-7" data-dismiss="modal">
+          No</button>
+         <button type="submit" ng-click="hc.afterlogout()" class="btn btn-success col-md-2 col-md-push-4 col-md-pull-6" data-dismiss="modal">
+            Yes
+         </button>
+       </div>
+    </div>
+  </div>
+</div>

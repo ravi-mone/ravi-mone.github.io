@@ -1,0 +1,76 @@
+<div class="top_container">
+ <d4><h3>Edit Business Card</h3></d4>
+ <span style="margin-left:650px"><d4></d4></span>
+</div>
+<div class="row speaker">
+ <div class="col-md-2 images-container">
+     <img id="profilePic" height="100px" width="100px" class="big-image" ng-src="{{person.pictureUrl}}" />
+     <img class="edit img-circle" id="clickid" ng-click="yespic=true" src="Web/ic_edit_profile.png" onmouseover="" style="cursor: pointer;"/>
+    <input type='file' id="imgInp" ng-hide="true"/>
+ </div>
+ <div class="col-md-10 speaker" style="padding-right:100px">
+   <form name="form">
+     <h5 class="greyColor star">First Name</h5>
+     <input type="text" ng-model="person.firstName" required/>
+     <hr class="speaker"/>
+
+     <h5 class="greyColor">Last Name</h5>
+     <input type="text" ng-model="person.lastName" />
+     <hr class="speaker"/>
+
+     <h5 class="greyColor">Company</h5>
+     <input type="text" ng-model="person.positions.values[0].company.name" />
+     <hr class="speaker"/>
+
+     <h5 class="greyColor">Designation</h5>
+     <input type ngChange="ebc.imageUpload(this)"="text" ng-model="person.positions.values[0].title" size=30 />
+     <hr class="speaker"/>
+
+     <h5 class="greyColor">Contact</h5>
+     <input type="text" name="phonenumber" ng-model="person.pnumber" maxlength=10 minlength=10 ng-pattern="/^[1-9][0-9]*$/" />
+     <span ng-show="form.phonenumber.$error.pattern">Enter a valid Mobile Number</span>
+     <hr class="speaker"/>
+
+     <h5 class="greyColor">Email</h5>
+     <input type="email" name="email" ng-model="person.emailAddress" size="50" ng-pattern='/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'/>
+     <span ng-show="form.email.$error.pattern">Enter a valid Email</span>
+     <hr class="speaker"/>
+
+
+     <h5 class="greyColor">Web</h5>
+     <input type="text" name="website" ng-model="person.website" ng-pattern="/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/" />
+     <span ng-show="form.website.$error.pattern">Enter a valid Website</span>
+     <hr class="speaker"/>
+
+     <button type="submit" ng-click="bcc.goback()" class="nohover col-md-2 col-md-pull-12">Cancel</button>
+     <button type="submit" ng-disabled="form.$invalid" ng-click="bcc.updateprofile()" class="btn btn-success col-md-2 col-sm-push-1 col-md-pull-11">
+       Update
+     </button>
+   </form>
+ </div>
+</div>
+<script>
+$('#clickid').click(function(){
+  console.log("called");
+  $('#imgInp').click();
+})
+
+  function readURL(input) {
+        console.log(input.files);
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#profilePic').attr('src', e.target.result);
+              localStorage.setItem("pic",JSON.stringify(e.target.result));
+              console.log(JSON.parse(localStorage.getItem("pic")));
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+  $("#imgInp").change(function(){
+      readURL(this);
+  });
+</script>
