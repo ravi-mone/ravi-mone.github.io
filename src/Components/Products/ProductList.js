@@ -67,10 +67,10 @@ const ProductList = () => {
       payload: item,
     });
   };
-  const incrementItem = (item) => {
+  const handleCartItem = (item, increaseItem) => {
     item.isAddedtoCart = true;
     if (item.count > 0) {
-      item.count = item.count + 1;
+      item.count = increaseItem ? item.count + 1 : item.count - 1;
     }
     dispatch({
       type: UPDATE_CART_ITEM_COUNT,
@@ -78,16 +78,6 @@ const ProductList = () => {
     });
   };
 
-  const decrementItem = (item) => {
-    item.isAddedtoCart = true;
-    if (item.count > 0) {
-      item.count = item.count - 1;
-    }
-    dispatch({
-      type: UPDATE_CART_ITEM_COUNT,
-      payload: item,
-    });
-  };
   return (
     <div>
       <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-2 px-4">
@@ -98,8 +88,8 @@ const ProductList = () => {
               product={item}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
-              incrementItem={incrementItem}
-              decrementItem={decrementItem}
+              incrementItem={() => handleCartItem(item, true)}
+              decrementItem={() => handleCartItem(item, false)}
             />
           ))
         ) : (
